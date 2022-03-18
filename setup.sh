@@ -26,7 +26,7 @@ repo_setup () {
     #num_cpus=$(nproc)
     num_cpus=8
     echo -e '\nACCEPT_KEYWORDS="~amd64"\nACCEPT_LICENSE="*"' >> /etc/portage/make.conf
-    echo -e '\nMAKEOPTS="-j'"$num_cpus"' -l'"$num_cpus"'"\nEMERGE_DEFAULT_OPTS="--jobs='"$num_cpus"' --load-average='"$num_cpus"' --quiet --verbose"' >> /etc/portage/make.conf
+    echo -e '\nMAKEOPTS="-j'"$num_cpus"' -l'"$num_cpus"'"\nEMERGE_DEFAULT_OPTS="--jobs='"$num_cpus"' --load-average='"$num_cpus"' --quiet"' >> /etc/portage/make.conf
     echo -e '\nFEATURES="parallel-install parallel-fetch"' >> /etc/portage/make.conf
     mkdir --parents /etc/portage/repos.conf
     cp /usr/share/portage/config/repos.conf /etc/portage/repos.conf/gentoo.conf

@@ -8,7 +8,7 @@ set -e
 # Description: Build xanmod kernel on gentoo
 # Dependencies: 7z, lz4
 
-directory=$(pwd)
+workdir=$(pwd)
 verbosity () {
     echo -e "\n\n***********************************************"
     echo -e "$1"
@@ -50,8 +50,8 @@ kernel_tag () {
     version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 /Xanmod-/;s/ Kernel Configuration//')
     seconds=$(stat -c '%W' /usr/src/linux/.config)
     tag="$version-$seconds"
-    export KERNEL_TAG="$tag"
-    verbosity "KERNEL TAG WAS SET SUCCESSFULLY"
+    echo $tag > $workdir/release_tag
+    verbosity "KERNEL BUILD RELEASE TAG WAS SET SUCCESSFULLY"
 }
 
 deps_setup
