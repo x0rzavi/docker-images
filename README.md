@@ -1,3 +1,3 @@
 # Gentoo-Kernel
 
-## Automatically build and package latest xanmod sources for gentoo
+## Automatically build, package and release latest xanmod sources for gentoo
