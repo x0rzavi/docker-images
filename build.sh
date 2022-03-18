@@ -17,7 +17,6 @@ verbosity () {
 
 kernel_prepare () {
     cd /usr/src/linux
-    make -j$(nproc) mrproper
     cp CONFIGS/xanmod/gcc/config .config
     patch < $workdir/patches/patch*
     #wget -O .config https://raw.githubusercontent.com/x0rzavi/gentoo-bits/main/config-5.16.14-gentoo-x0rzavi
