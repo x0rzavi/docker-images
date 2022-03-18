@@ -41,8 +41,16 @@ kernel_package () {
     echo -e "\nKernel Packing Completed Successfully\n"
 }
 
+kernel_tag () {
+    version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 /Xanmod-/;s/ Kernel Configuration//')
+    seconds=$(stat -c '%W' /usr/src/linux/.config)
+    tag="$version-$seconds"
+    export KERNEL_TAG="$tag"
+}
+
 deps_setup
 package_setup
 kernel_prepare
 kernel_build
 kernel_package
+kernel_tag
