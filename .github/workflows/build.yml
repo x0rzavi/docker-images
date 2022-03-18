@@ -17,5 +17,5 @@ jobs:
             - name: Release
               uses: softprops/action-gh-release@master
               with:
-                files: /usr/src/linux/linux.7z
+                files: /usr/src/linux/linux.zip
                 tag_name: ${{ env.RELEASE_TAG }}

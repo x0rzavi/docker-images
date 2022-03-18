@@ -35,7 +35,7 @@ kernel_package () {
 }
 
 kernel_tag () {
-    version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 /xanmod-/;s/ Kernel Configuration//')
+    version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 //;s/ Kernel Configuration//')
     seconds=$(stat -c '%x' /usr/src/linux/.config | sed 's/\..*$//;s/ /+/g')
     tag="$version-$seconds"
     echo $tag > $workdir/release_tag
