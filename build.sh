@@ -36,7 +36,7 @@ kernel_package () {
 
 kernel_tag () {
     version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 //;s/ Kernel Configuration//')
-    seconds=$(stat -c '%x' /usr/src/linux/.config | sed 's/\..*$//;s/ /+/g')
+    seconds=$(stat -c '%X' /usr/src/linux/.config)
     tag="$version-$seconds"
     echo $tag > $workdir/release_tag
     verbosity "KERNEL BUILD RELEASE TAG WAS SET SUCCESSFULLY"
