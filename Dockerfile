@@ -15,6 +15,6 @@ RUN eselect news read &>/dev/null && \
     emerge dev-vcs/git app-eselect/eselect-repository && \
     eselect repository enable src_prepare-overlay && \
     emaint sync -r src_prepare-overlay 
-RUN emerge sys-kernel/xanmod-sources app-arch/lz4 && \
+RUN emerge sys-kernel/xanmod-sources app-arch/lz4 app-arch/zip && \
     eselect kernel set 1
 RUN rm -rf /var/db/repos/*
