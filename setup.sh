@@ -24,12 +24,12 @@ repo_setup () {
     mkdir --parents /etc/portage/repos.conf
     cp /usr/share/portage/config/repos.conf /etc/portage/repos.conf/gentoo.conf
     emerge-webrsync
+    eselect news read &>/dev/null
     emerge dev-vcs/git app-eselect/eselect-repository --noreplace
     wget -O /etc/portage/repos.conf/gentoo.conf https://raw.githubusercontent.com/x0rzavi/gentoo-bits/main/gentoo.conf
     rm -fr /var/db/repos/gentoo
     eselect repository enable src_prepare-overlay
     emerge --sync
-    eselect news read &>/dev/null
     echo -e "\nRepo Setup Completed Successfully\n"
 }
 
