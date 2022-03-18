@@ -1,4 +1,4 @@
-name: Gentoo Kernel
+name: Build Gentoo Kernel
 on:
     workflow_dispatch:
 
@@ -6,12 +6,10 @@ jobs:
     build:
         runs-on: ubuntu-latest
         container:
-            image: gentoo/stage3:latest
+            image: x0rzavi/gentoo-kernel:latest
         steps:
             - name: Checkout
               uses: actions/checkout@master
-            - name: Setup
-              run: source ./setup.sh
             - name: Build
               run: source ./build.sh
             - name: Tag
