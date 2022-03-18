@@ -13,9 +13,12 @@ jobs:
             - name: Build
               run: source ./build.sh
             - name: Tag
-              run: echo "RELEASE_TAG=$(cat release_tag)" >> $GITHUB_ENV
+              id: release_tag
+              run: |
+                release_tag="$(cat release_tag)"
+                echo "::set-output name=tag::$release_tag"
             - name: Release
               uses: softprops/action-gh-release@master
               with:
                 files: /usr/src/linux/linux.zip
-                tag_name: ${{ env.RELEASE_TAG }}
+                tag_name: ${{ steps.release_tag.outputs.tag }}
