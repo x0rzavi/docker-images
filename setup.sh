@@ -13,7 +13,7 @@ locale_setup () {
     locale-gen &>/dev/null
     eselect locale set en_US.utf8 
     env-update && source /etc/profile
-    echo -e "\nLocale Setup Completed Successfully\n"
+    echo -e "\nLOCALE SETUP COMPLETED SUCCESSFULLY\n"
 }
 
 repo_setup () {
@@ -30,13 +30,13 @@ repo_setup () {
     rm -fr /var/db/repos/gentoo
     eselect repository enable src_prepare-overlay
     emerge --sync
-    echo -e "\nRepo Setup Completed Successfully\n"
+    echo -e "\nREPO SETUP COMPLETED SUCCESSFULLY\n"
 }
 
 timezone_setup () {
     echo "Asia/Kolkata" > /etc/timezone
     emerge --config sys-libs/timezone-data
-    echo -e "\nTimezone Setup Completed Successfully\n"
+    echo -e "\nTIMEZONE SETUP COMPLETED SUCCESSFULLY\n"
 }
 
 locale_setup
