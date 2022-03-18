@@ -8,12 +8,18 @@ set -e
 # Description: Prepare gentoo for building kernel
 # Dependencies: git, eselect-repository
 
+verbosity () {
+    echo -e "\n\n***********************************************"
+    echo -e "$1"
+    echo -e "***********************************************\n\n"
+}
+
 locale_setup () {
     sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
     locale-gen &>/dev/null
     eselect locale set en_US.utf8 
     env-update && source /etc/profile
-    echo -e "\nLOCALE SETUP COMPLETED SUCCESSFULLY\n"
+    verbosity "LOCALE SETUP COMPLETED SUCCESSFULLY"
 }
 
 repo_setup () {
@@ -31,13 +37,13 @@ repo_setup () {
     rm -fr /var/db/repos/gentoo
     eselect repository enable src_prepare-overlay
     emerge --sync
-    echo -e "\nREPO SETUP COMPLETED SUCCESSFULLY\n"
+    verbosity "REPO SETUP COMPLETED SUCCESSFULLY"
 }
 
 timezone_setup () {
     echo "Asia/Kolkata" > /etc/timezone
     emerge --config sys-libs/timezone-data
-    echo -e "\nTIMEZONE SETUP COMPLETED SUCCESSFULLY\n"
+    verbosity "TIMEZONE SETUP COMPLETED SUCCESSFULLY"
 }
 
 locale_setup

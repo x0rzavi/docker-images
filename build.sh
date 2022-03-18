@@ -9,16 +9,22 @@ set -e
 # Dependencies: 7z, lz4
 
 directory=$(pwd)
+verbosity () {
+    echo -e "\n\n***********************************************"
+    echo -e "$1"
+    echo -e "***********************************************\n\n"
+}
+
 deps_setup () {
     env USE="-wxwidgets" emerge app-arch/lz4 app-arch/p7zip --noreplace
-    echo -e "\nDEPENDENCY SETUP COMPLETED SUCCESSFULLY\n"
+    verbosity "DEPENDENCY SETUP COMPLETED SUCCESSFULLY"
 }
 
 package_setup () {
     emerge sys-kernel/xanmod-sources --noreplace
     eselect kernel set 1
     ls -l /usr/src/linux
-    echo -e "\nKERNEL PACKAGE SETUP COMPLETED SUCCESSFULLY\n"
+    verbosity "KERNEL PACKAGE SETUP COMPLETED SUCCESSFULLY"
 }
 
 kernel_prepare () {
@@ -27,17 +33,17 @@ kernel_prepare () {
     #cp CONFIGS/xanmod/gcc/config .config
     wget -O .config https://raw.githubusercontent.com/x0rzavi/gentoo-bits/main/config-5.16.14-gentoo-x0rzavi
     make -j$(nproc) olddefconfig
-    echo -e "\nKERNEL PREPARATION COMPLETED SUCCESSFULLY\n"
+    verbosity "KERNEL PREPARATION COMPLETED SUCCESSFULLY"
 }
 
 kernel_build () {
     time make -j$(nproc)
-    echo -e "\nKERNEL BUILD COMPLETED SUCCESSFULLY\n"
+    verbosity "KERNEL BUILD COMPLETED SUCCESSFULLY"
 }
 
 kernel_package () {
     time 7z a -t7z linux.7z /usr/src/linux-*
-    echo -e "\nKERNEL PACKING COMPLETED SUCCESSFULLY\n"
+    verbosity "KERNEL PACKING COMPLETED SUCCESSFULLY"
 }
 
 kernel_tag () {
@@ -45,7 +51,7 @@ kernel_tag () {
     seconds=$(stat -c '%W' /usr/src/linux/.config)
     tag="$version-$seconds"
     export KERNEL_TAG="$tag"
-    echo -e "\nKERNEL TAG WAS SET SUCCESSFULLY\n"
+    verbosity "KERNEL TAG WAS SET SUCCESSFULLY"
 }
 
 deps_setup
