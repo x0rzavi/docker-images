@@ -31,7 +31,6 @@ kernel_prepare () {
 }
 
 kernel_build () {
-    make -j$(nproc) nconfig
     time make -j$(nproc)
     echo -e "\nKERNEL BUILD COMPLETED SUCCESSFULLY\n"
 }
