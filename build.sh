@@ -30,7 +30,7 @@ kernel_build () {
 }
 
 kernel_package () {
-    time zip -rq linux.zip /usr/src/linux-*
+    time zip -rq linux.zip *
     verbosity "KERNEL PACKING COMPLETED SUCCESSFULLY"
 }
 
