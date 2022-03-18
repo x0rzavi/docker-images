@@ -15,18 +15,6 @@ verbosity () {
     echo -e "***********************************************\n\n"
 }
 
-deps_setup () {
-    env USE="-wxwidgets" emerge app-arch/lz4 app-arch/p7zip --noreplace
-    verbosity "DEPENDENCY SETUP COMPLETED SUCCESSFULLY"
-}
-
-package_setup () {
-    emerge sys-kernel/xanmod-sources --noreplace
-    eselect kernel set 1
-    ls -l /usr/src/linux
-    verbosity "KERNEL PACKAGE SETUP COMPLETED SUCCESSFULLY"
-}
-
 kernel_prepare () {
     cd /usr/src/linux
     make -j$(nproc) mrproper
@@ -47,15 +35,13 @@ kernel_package () {
 }
 
 kernel_tag () {
-    version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 /Xanmod-/;s/ Kernel Configuration//')
-    seconds=$(stat -c '%W' /usr/src/linux/.config)
+    version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 /xanmod-/;s/ Kernel Configuration//')
+    seconds=$(stat -c '%x' /usr/src/linux/.config | sed 's/\..*$//;s/ /+/g')
     tag="$version-$seconds"
     echo $tag > $workdir/release_tag
     verbosity "KERNEL BUILD RELEASE TAG WAS SET SUCCESSFULLY"
 }
 
-deps_setup
-package_setup
 kernel_prepare
 kernel_build
 kernel_package
