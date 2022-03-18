@@ -7,7 +7,7 @@ RUN sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     env-update && source /etc/profile
 RUN echo "Asia/Kolkata" > /etc/timezone && \
     emerge --config sys-libs/timezone-data
-RUN export num_cpus=8 && \
+RUN export num_cpus=4 && \
     echo -e '\nACCEPT_KEYWORDS="~amd64"\nACCEPT_LICENSE="*"' >> /etc/portage/make.conf && \
     echo -e '\nMAKEOPTS="-j'"$num_cpus"' -l'"$num_cpus"'"\nEMERGE_DEFAULT_OPTS="--jobs='"$num_cpus"' --load-average='"$num_cpus"' --quiet"' >> /etc/portage/make.conf && \
     echo -e '\nFEATURES="parallel-install parallel-fetch"' >> /etc/portage/make.conf
