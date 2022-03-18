@@ -9,14 +9,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Tagging
-        id: tag
-        run: |
-          TAG="latest"
-          IMAGE="docker.io/x0rzavi/gentoo_kernel"
-          echo ::set-output name=tagged_image::${IMAGE}:${TAG}
-          echo ::set-output name=tag::${TAG}
-
       - name: Login
         uses: docker/login-action@master
         with:
@@ -29,13 +21,13 @@ jobs:
         with:
           install: true
 
-      - name: Cache build
-        uses: actions/cache@master
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-multi-buildx
+      #- name: Cache build
+      #  uses: actions/cache@master
+      #  with:
+      #    path: /tmp/.buildx-cache
+      #    key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-multi-buildx
 
       - name: Build image
         uses: docker/build-push-action@master
@@ -43,11 +35,13 @@ jobs:
           context: .
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: ${{ steps.tag.outputs.tagged_image }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+          tags: x0rzavi/gentoo-kernel:latest
+          cache-from: type=registry,ref=x0rzavi/gentoo-kernel:buildcache
+          cache-to: type=registry,ref=x0rzavi/gentoo-kernel:buildcache,mode=max
+          #cache-from: type=local,src=/tmp/.buildx-cache
+          #cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
 
-      - name: Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      #- name: Move cache
+      #  run: |
+      #    rm -rf /tmp/.buildx-cache
+      #    mv /tmp/.buildx-cache-new /tmp/.buildx-cache
