@@ -11,9 +11,9 @@ jobs:
             - name: Checkout
               uses: actions/checkout@master
             - name: Setup
-              run: source setup.sh
+              run: source ./setup.sh
             - name: Build
-              run: source build.sh
+              run: source ./build.sh
             - name: Release
               uses: softprops/action-gh-release@master
               with:
