@@ -6,7 +6,7 @@ set -e
 
 # Author: https://github.com/x0rzavi
 # Description: Build xanmod kernel on gentoo
-# Dependencies: 7z, lz4
+# Dependencies: zip, lz4
 
 workdir=$(pwd)
 verbosity () {
@@ -30,7 +30,7 @@ kernel_build () {
 }
 
 kernel_package () {
-    time 7z a -t7z linux.7z /usr/src/linux-*
+    time zip -r linux.zip /usr/src/linux-*
     verbosity "KERNEL PACKING COMPLETED SUCCESSFULLY"
 }
 
