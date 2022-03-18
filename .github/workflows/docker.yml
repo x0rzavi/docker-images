@@ -21,14 +21,6 @@ jobs:
         with:
           install: true
 
-      #- name: Cache build
-      #  uses: actions/cache@master
-      #  with:
-      #    path: /tmp/.buildx-cache
-      #    key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
-      #    restore-keys: |
-      #      ${{ runner.os }}-multi-buildx
-
       - name: Build image
         uses: docker/build-push-action@master
         with:
@@ -38,10 +30,3 @@ jobs:
           tags: x0rzavi/gentoo-kernel:latest
           cache-from: type=registry,ref=x0rzavi/gentoo-kernel:buildcache
           cache-to: type=registry,ref=x0rzavi/gentoo-kernel:buildcache,mode=max
-          #cache-from: type=local,src=/tmp/.buildx-cache
-          #cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
-
-      #- name: Move cache
-      #  run: |
-      #    rm -rf /tmp/.buildx-cache
-      #    mv /tmp/.buildx-cache-new /tmp/.buildx-cache
