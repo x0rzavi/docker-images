@@ -1,0 +1,4 @@
+{
+    "name": "Gentoo Codespace",
+    "image": "gentoo/stage3:latest"
+}
