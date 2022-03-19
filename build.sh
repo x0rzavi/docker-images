@@ -18,14 +18,14 @@ verbosity () {
 kernel_prepare () {
     cd /usr/src/linux
     cp CONFIGS/xanmod/gcc/config .config
-    #patch < $workdir/patches/patch1_localversion.diff
-    #patch < $workdir/patches/patch2_kernel_comp.diff
-    #patch < $workdir/patches/patch3_kernel_config.diff
-    #patch < $workdir/patches/patch4_zen_optimize.diff
-    #patch < $workdir/patches/patch5_O3_optimize.diff
-    #patch < $workdir/patches/patch6_bfq_builtin.diff
-    #patch < $workdir/patches/patch7_btrfs_builtin.diff
-    wget -O .config https://raw.githubusercontent.com/x0rzavi/gentoo-bits/main/config-5.16.14-gentoo-x0rzavi
+    patch < $workdir/patches/patch1_localversion.diff
+    patch < $workdir/patches/patch2_kernel_comp.diff
+    patch < $workdir/patches/patch3_kernel_config.diff
+    patch < $workdir/patches/patch4_zen_optimize.diff
+    patch < $workdir/patches/patch5_O3_optimize.diff
+    patch < $workdir/patches/patch6_bfq_builtin.diff
+    patch < $workdir/patches/patch7_btrfs_builtin.diff
+    #wget -O .config https://raw.githubusercontent.com/x0rzavi/gentoo-bits/main/config-5.16.14-gentoo-x0rzavi
     make -j$(nproc) olddefconfig
     verbosity "KERNEL PREPARATION COMPLETED SUCCESSFULLY"
 }
