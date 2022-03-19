@@ -12,7 +12,7 @@ jobs:
               uses: actions/checkout@master
             - name: Build
               run: source ./build.sh
-            - name: Temp Upload
+            - name: Upload
               run: source ./upload.sh 
             - name: Tag
               id: release_tag
