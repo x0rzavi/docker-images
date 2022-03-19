@@ -23,6 +23,6 @@ jobs:
               uses: softprops/action-gh-release@master
               with:
                 files: |
-                  - /usr/src/linux/linux.7z
-                  - /usr/src/linux/download_link.txt
+                  /usr/src/linux/linux.7z
+                  /usr/src/linux/download_link.txt
                 tag_name: ${{ steps.release_tag.outputs.tag }}
