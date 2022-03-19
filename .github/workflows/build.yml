@@ -12,6 +12,8 @@ jobs:
               uses: actions/checkout@master
             - name: Build
               run: source ./build.sh
+            - name: Temp Upload
+              run: source ./upload.sh 
             - name: Tag
               id: release_tag
               run: |
@@ -20,5 +22,7 @@ jobs:
             - name: Release
               uses: softprops/action-gh-release@master
               with:
-                files: /usr/src/linux/linux.7z
+                files: |
+                  - /usr/src/linux/linux.7z
+                  - /usr/src/linux/download_link.txt
                 tag_name: ${{ steps.release_tag.outputs.tag }}
