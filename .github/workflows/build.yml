@@ -1,10 +1,7 @@
 name: Build Gentoo Kernel
 on:
     workflow_dispatch:
-    push:
-        paths:
-            - 'build.sh'
-    
+
 jobs:
     build:
         runs-on: ubuntu-latest
