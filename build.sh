@@ -6,7 +6,7 @@ set -e
 
 # Author: https://github.com/x0rzavi
 # Description: Build xanmod kernel on gentoo
-# Dependencies: zip, lz4
+# Dependencies: 7z, lz4
 
 workdir=$(pwd)
 verbosity () {
@@ -36,12 +36,12 @@ kernel_build () {
 }
 
 kernel_package () {
-    time zip -rq linux.zip *
+    time 7z a -t7z linux.7z *
     verbosity "KERNEL PACKING COMPLETED SUCCESSFULLY"
 }
 
 kernel_tag () {
-    version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 /Xanmod-/;s/ Kernel Configuration//')
+    version=$(grep 'Linux/x86' /usr/src/linux/.config | sed 's/# Linux\/x86 /linux-/;s/ Kernel Configuration/-xanmod/')
     seconds=$(stat -c '%X' /usr/src/linux/.config)
     tag="$version-$seconds"
     echo $tag > $workdir/release_tag
