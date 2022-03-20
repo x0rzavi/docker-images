@@ -15,10 +15,10 @@ RUN eselect news read &>/dev/null && \
     emerge dev-vcs/git app-eselect/eselect-repository && \
     eselect repository enable gentoobr && \
     emaint sync -r gentoobr
+RUN emerge dev-util/github-cli
 ARG USE="tasktype -wxwidgets"
 RUN emerge sys-kernel/xanmod-sources app-arch/lz4 app-arch/p7zip && \
     eselect kernel set 1
-RUN emerge dev-util/github-cli
 RUN rm -rf /var/db/repos/* && \
     rm -rf /var/db/pkg/* && \
     rm -rf /var/cache/distfiles/*
