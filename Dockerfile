@@ -18,4 +18,6 @@ RUN eselect news read &>/dev/null && \
 RUN emerge sys-kernel/xanmod-sources app-arch/lz4 app-arch/p7zip && \
     eselect kernel set 1
 RUN emerge dev-util/github-cli
-RUN rm -rf /var/db/repos/*
+RUN rm -rf /var/db/repos/* && \
+    rm -rf /var/db/pkg/* && \
+    rm -rf /var/cache/distfiles/*
