@@ -1,3 +1,3 @@
 # Gentoo-Kernel
 
-## Automatically build, package and release latest xanmod sources for gentoo
+## Automatically build Docker Image to aid in building,packaging and releasing latest xanmod sources for gentoo
