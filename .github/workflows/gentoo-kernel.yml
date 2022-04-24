@@ -1,12 +1,12 @@
-name: gentoo
+name: Gentoo Kernel Build 
 on:
   workflow_dispatch:
   schedule:
     - cron:  '0 */6 * * *'
   push:
       paths:
-        - 'Dockerfile.$GITHUB_WORKFLOW'
-        - '.github/workflows/$GITHUB_WORKFLOW.yml'
+        - 'Dockerfile.gentoo-kernel'
+        - '.github/workflows/gentoo-kernel.yml'
 
 jobs:
   build:
@@ -31,9 +31,9 @@ jobs:
         uses: docker/build-push-action@master
         with:
           context: .
-          file: Dockerfile.$GITHUB_WORKFLOW
+          file: Dockerfile.gentoo-kernel
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: x0rzavi/$GITHUB_WORKFLOW:latest
-          cache-from: type=registry,ref=x0rzavi/$GITHUB_WORKFLOW:buildcache
-          cache-to: type=registry,ref=x0rzavi/$GITHUB_WORKFLOW:buildcache,mode=max
+          tags: x0rzavi/gentoo-kernel:latest
+          cache-from: type=registry,ref=x0rzavi/gentoo-kernel:buildcache
+          cache-to: type=registry,ref=x0rzavi/gentoo-kernel:buildcache,mode=max
