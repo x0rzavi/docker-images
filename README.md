@@ -1,5 +1,3 @@
-# Repo will be archived until I switch back to Gentoo again :)
+# docker-images
 
-# Gentoo-Kernel-Docker [![Build Gentoo Kernel Docker](https://github.com/x0rzavi/gentoo-kernel-docker/actions/workflows/docker.yml/badge.svg)](https://github.com/x0rzavi/gentoo-kernel-docker/actions/workflows/docker.yml)
-
-## Automatically build and push docker image to aid in building,packaging and releasing latest xanmod kernel for gentoo tuned to my needs
+## Automatically build and push my docker images
