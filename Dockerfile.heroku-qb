@@ -10,4 +10,4 @@ RUN mkdir --parents $HOME/.config/qBittorrent/ $HOME/.config/rclone/ && \
 
 USER root
 RUN apk update --no-cache && \
-    apk add --no-cache qbittorrent-nox rclone fuse3
+    apk add --no-cache qbittorrent-nox rclone fuse
