@@ -1,12 +1,12 @@
-name: Qbittorent on heroku
+name: Arch Linux Dev Environment
 on:
   workflow_dispatch:
   schedule:
     - cron:  '0 */12 * * *'
   push:
       paths:
-        - 'Dockerfile.heroku-qb'
-        - '.github/workflows/heroku-qb.yml'
+        - 'Dockerfile.arch-dev'
+        - '.github/workflows/arch-dev.yml'
 
 jobs:
   build:
@@ -31,9 +31,9 @@ jobs:
         uses: docker/build-push-action@master
         with:
           context: .
-          file: Dockerfile.heroku-qb
+          file: Dockerfile.arch-dev
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: x0rzavi/heroku-qb:latest
-          cache-from: type=registry,ref=x0rzavi/heroku-qb:buildcache
-          cache-to: type=registry,ref=x0rzavi/heroku-qb:buildcache,mode=max
+          tags: x0rzavi/arch-dev:latest
+          cache-from: type=registry,ref=x0rzavi/arch-dev:buildcache
+          cache-to: type=registry,ref=x0rzavi/arch-dev:buildcache,mode=max
