@@ -1,6 +1,6 @@
 FROM archlinux:base-devel
 
-RUN echo 'Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+#RUN echo 'Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 RUN sed -i 's/NoProgressBar/#NoProgressBar/;s/ParallelDownloads = 5/ParallelDownloads = 20/;s/#Color/Color/' /etc/pacman.conf && \
     pacman-key --init && \
     pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com && \
