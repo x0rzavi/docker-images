@@ -11,13 +11,11 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 ENV LANG en_US.utf8
 ENV TZ "Asia/Kolkata"
 
-RUN useradd -m x0rzavi
-USER x0rzavi
-WORKDIR /home/x0rzavi
+WORKDIR /root
 RUN git clone --depth=1 https://github.com/TeamUltroid/Ultroid
-WORKDIR /home/x0rzavi/Ultroid
+WORKDIR /root/Ultroid
 
-ENV PATH="/home/x0rzavi/.local/bin:$PATH"
+ENV PATH="/root/.local/bin:$PATH"
 RUN python3 -m pip install --no-cache-dir -U pip setuptools wheel \
     -r requirements.txt \
     -r re*/st*/optional-requirements.txt
