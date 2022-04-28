@@ -1,0 +1,39 @@
+name: Ultroid userbot runtime environment on github actions
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 */12 * * *'
+  push:
+      paths:
+        - 'Dockerfile.actions-userbot'
+        - '.github/workflows/actions-userbot.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Login
+        uses: docker/login-action@master
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Buildx setup
+        id: buildx
+        uses: docker/setup-buildx-action@master
+        with:
+          install: true
+
+      - name: Build image
+        uses: docker/build-push-action@master
+        with:
+          context: .
+          file: Dockerfile.actions-userbot
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: x0rzavi/actions-userbot:latest
+          cache-from: type=registry,ref=x0rzavi/actions-userbot:buildcache
+          cache-to: type=registry,ref=x0rzavi/actions-userbot:buildcache,mode=max
