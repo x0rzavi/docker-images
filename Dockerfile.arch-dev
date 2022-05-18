@@ -16,9 +16,10 @@ RUN useradd -m -G wheel x0rzavi && \
     echo "Defaults pwfeedback" > /etc/sudoers.d/01-feedback
 
 RUN pacman -Syyu --noconfirm
-RUN pacman -S --noconfirm git wget curl btop paru micro nano vim openssh && \
+RUN pacman -S --noconfirm git wget curl btop paru micro nano vim openssh fish && \
     sed -i 's/#BottomUp/BottomUp/;s/#SudoLoop/SudoLoop/' /etc/paru.conf
 RUN yes | paru -Sccd
 
 USER x0rzavi
 WORKDIR /home/x0rzavi
+RUN echo "1229" | chsh -s /bin/fish
