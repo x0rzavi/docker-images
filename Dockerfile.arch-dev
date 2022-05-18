@@ -18,6 +18,7 @@ RUN useradd -m -G wheel x0rzavi && \
 RUN pacman -Syyu --noconfirm
 RUN pacman -S --noconfirm git wget curl btop paru micro nano vim openssh && \
     sed -i 's/#BottomUp/BottomUp/;s/#SudoLoop/SudoLoop/' /etc/paru.conf
+RUN yes | paru -Sccd
 
 USER x0rzavi
 WORKDIR /home/x0rzavi
