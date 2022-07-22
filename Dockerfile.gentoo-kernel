@@ -17,12 +17,12 @@ RUN export num_cpus=8 && \
 
 RUN eselect news read &>/dev/null && \
     emerge dev-vcs/git app-eselect/eselect-repository && \
-    eselect repository enable gentoobr && \
-    emaint sync -r gentoobr
+    eselect repository enable gentoo-zh && \
+    emaint sync -r gentoo-zh
 
 RUN emerge dev-util/github-cli
 
-ARG USE="tasktype -wxwidgets"
+ARG USE="cjktty -wxwidgets"
 RUN emerge sys-kernel/xanmod-sources app-arch/lz4 app-arch/p7zip && \
     eselect kernel set 1
 
