@@ -15,7 +15,7 @@ RUN export num_cpus=8 && \
     echo -e '\nMAKEOPTS="-j'"$num_cpus"' -l'"$num_cpus"'"\nEMERGE_DEFAULT_OPTS="--jobs='"$num_cpus"' --load-average='"$num_cpus"' --quiet"' >> /etc/portage/make.conf && \
     echo -e '\nFEATURES="parallel-install parallel-fetch"' >> /etc/portage/make.conf
 
-ARG USE="cjktty -wxwidgets -perl"
+ARG USE="-wxwidgets -perl"
 RUN eselect news read &>/dev/null && \
     emerge dev-vcs/git app-eselect/eselect-repository && \
     eselect repository enable gentoo-zh && \
