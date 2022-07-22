@@ -22,7 +22,7 @@ RUN eselect news read &>/dev/null && \
 
 RUN emerge dev-util/github-cli
 
-ARG USE="cjktty -wxwidgets"
+ARG USE="cjktty -wxwidgets -perl"
 RUN emerge sys-kernel/xanmod-sources app-arch/lz4 app-arch/p7zip && \
     eselect kernel set 1
 
