@@ -18,12 +18,12 @@ RUN export num_cpus=8 && \
 ARG USE="-wxwidgets -perl"
 RUN eselect news read &>/dev/null && \
     emerge dev-vcs/git app-eselect/eselect-repository && \
-    eselect repository enable gentoo-zh && \
-    emaint sync -r gentoo-zh
+    eselect repository add x0rzavi git https://github.com/x0rzavi/x0rzavi-overlay.git && \
+    emaint sync -r x0rzavi
 
 RUN emerge dev-util/github-cli
 
-RUN emerge sys-kernel/xanmod-sources app-arch/lz4 app-arch/p7zip && \
+RUN emerge sys-kernel/cachyos-sources app-arch/lz4 app-arch/p7zip && \
     eselect kernel set 1
 
 RUN rm -rf /var/db/repos/* && \
